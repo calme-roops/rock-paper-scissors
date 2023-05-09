@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper and Scissors</title>
+</head>
+<body>
+    <!-- Button to start game -->
+    <button id="button"> Game On!</button> 
+    <script> 
+            // Array with the game choices
+            const choices = ['Rock', 'Paper', 'Scissor'];  
+
+            //Function for computer to choose one choice from array
+            function getComputerChoice() { 
+                    num = Math.floor(Math.random() * choices.length);
+                    return choices[num].toUpperCase();
+                }
+
+            //Function to decide whose wining the current gameplay
+            function playRound(playerSelection, computerSelection) {
+                if (playerSelection == computerSelection) {
+                    return 'Ties'
+                } else if (playerSelection == 'ROCK' && computerSelection == 'SCISSOR') {
+                    return 'You Won! Rock beats Scissors'            
+                } else if (playerSelection == 'PAPER' && computerSelection == 'ROCK') {
+                    return 'You Won! Paper beats Rock'
+                } else if (playerSelection == 'SCISSOR' && computerSelection == 'PAPER') {
+                    return ' You Won! Scissors beat Paper'
+                } else return 'You Lose!'
+            }
+
+            // declaring initial score
+            computerScore = 0;
+            playerScore = 0;
+
+            //Function for the game with player's input and score tracking 
+            function game() {
+                
+                var playerSelection = prompt('What do you choose?').toUpperCase();
+                console.log(playerSelection);
+                var computerSelection = getComputerChoice();
+                console.log(computerSelection);
+                console.log(playRound(playerSelection,computerSelection))
+
+                result = playRound(playerSelection, computerSelection);
+
+                if ( result.slice(0,7) == 'You Won' ) {
+                    playerScore += 1;
+                    console.log('Your score is %d and Computer score is %d', playerScore, computerScore)
+                }
+                else if (result == 'Ties') {
+                console.log('It\'s a tie! Your score is %d and Computer score is %d', playerScore, computerScore)
+                } else {
+                    computerScore += 1;
+                    console.log('Your score is %d and Computer score is %d', playerScore, computerScore)
+                }
+            }
+
+            //Initializing the game by glicking gameOn button using while loop
+            var element = document.getElementById('button');
+            element.addEventListener("click", function change() {
+                gameOn =true;
+                while(gameOn) {
+                    game();
+                if (computerScore == 5) {
+                    gameOn = false;
+                    console.log('You lost the game')
+                    playerScore = 0;
+                    computerScore = 0;
+                }
+                else if (playerScore == 5) { 
+                    console.log('Computer lose')
+                    gameOn = false
+                    playerScore = 0;
+                    computerScore = 0;                    
+                }    
+                }
+            } )
+
+    </script>
+</body>
+</html>
