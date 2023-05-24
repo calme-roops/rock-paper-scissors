@@ -4,87 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
     <title>Rock Paper and Scissors</title>
 </head>
 <body>
     <!-- Button to start game -->
-    <button id="button"> Game On!</button> 
-    <script> 
-            // Array with the game choices
-            const choices = ['ROCK', 'PAPER', 'SCISSORS'];  
+    <button id="main-button"> Game On!</button>
+    <p class="game-on">Click to start the game!</p>
+    <div class="game-buttons">
+        <div><button class="rock btn" value="ROCK">ROCK</button></div>
+        <div><button class="paper btn" value="PAPER">PAPER</button></div>
+        <div><button class="scissors btn" value="SCISSORS">SCISSORS</button></div>
+    </div> 
+    <p class="option"></p>
+    <div>
+        <p class='result'></p>
+    </div>
+    <div>
+        <p class="final-score"></p>
+    </div>
+    
+    <button class="reset">RESET GAME</button>
 
-            //Function for computer to choose one choice from array
-            function getComputerChoice() { 
-                    num = Math.floor(Math.random() * choices.length);
-                    return choices[num].toUpperCase();
-                }
-
-            //Function to decide whose wining the current gameplay
-            function playRound(playerSelection, computerSelection) {
-                if (playerSelection == computerSelection) {
-                    return 'Ties'
-                } else if (playerSelection == 'ROCK' && computerSelection == 'SCISSORS') {
-                    return 'You Won! Rock beats Scissors'            
-                } else if (playerSelection == 'PAPER' && computerSelection == 'ROCK') {
-                    return 'You Won! Paper beats Rock'
-                } else if (playerSelection == 'SCISSORS' && computerSelection == 'PAPER') {
-                    return ' You Won! Scissors beat Paper'
-                } else return 'You Lose!'
-                
-            }
-
-            // declaring initial score
-            computerScore = 0;
-            playerScore = 0;
-
-            //Function for the game with player's input and score tracking 
-            function game() {
-                var playerSelection = '';
-                
-                while (!choices.includes(playerSelection)){ // To get the right input from the user
-                    playerSelection = prompt('What do you wanna choose: Rock, Paper or Scissors?').toUpperCase();
-                }
-
-                var computerSelection = getComputerChoice();
-
-                result = playRound(playerSelection, computerSelection);
-
-                if ( result.slice(0,7) == 'You Won' ) {
-                    playerScore += 1;
-                    console.log(result);
-                    console.log('Your score is %d and Computer score is %d', playerScore, computerScore)
-                }
-                else if (result == 'Ties') {
-                    console.log(result);
-                    console.log('It\'s a tie! Your score is %d and Computer score is %d', playerScore, computerScore)
-                } else {
-                    computerScore += 1;
-                    console.log(result);
-                    console.log('Your score is %d and Computer score is %d', playerScore, computerScore)
-                }
-            }
-
-            //Initializing the game by glicking gameOn button using while loop
-            var element = document.getElementById('button');
-            element.addEventListener("click", function change() {
-                gameOn =true;
-                while(gameOn) {
-                    game();
-                if (computerScore == 5) {
-                    gameOn = false;
-                    console.log('You lost the game, Computer won.')
-                    playerScore = 0;
-                    computerScore = 0;
-                }
-                else if (playerScore == 5) { 
-                    console.log('Computer lost the game, You won!')
-                    gameOn = false
-                    playerScore = 0;
-                    computerScore = 0;                    
-                }    
-                }
-            } )
-
-    </script>
 </body>
 </html>
