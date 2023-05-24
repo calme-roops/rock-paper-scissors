@@ -1,0 +1,30 @@
+.body {
+    background-color: bisque;
+}
+
+button {
+    padding: 10px;
+    color: white;
+    background-color: black;
+}
+
+.game-buttons {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-around;
+}
+
+p {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.final-style {
+    font-size: large;
+    font-weight: 800;
+    border-radius: 10px;
+    border: 3px gold solid;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+}
